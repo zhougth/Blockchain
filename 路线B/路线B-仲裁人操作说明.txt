@@ -1,0 +1,38 @@
+大作业路线 B —— 仲裁人（赖谷彪）操作说明
+=============================================
+
+一、这是什么
+  一个 Next.js 前端，连接组长周裕杰部署在 POTOS 测试网的托管合约：
+    Escrow  合约: 0x451FD857f1bD0cD490e787455353c99049ad0B25
+    ZYJToken 合约: 0x4136723FC28Ca307eB505a0cD2F2874D792340e5
+    仲裁人 arbiter: 0x3BFd…EF7D（即你的钱包地址）
+  里面已写好 /escrow 托管页面（订单列表、创建、付款、确认、争议、仲裁）。
+
+二、运行步骤（需要 Node 18+ 和 yarn）
+  1. 解压本压缩包
+  2. 打开终端：
+       cd nextjs
+       yarn install
+       yarn start
+  3. 浏览器打开  http://localhost:3000/escrow
+  4. 点右上角 Connect Wallet，用 MetaMask 连接你的账户（0x3BFd…EF7D）
+  5. 如果提示 Wrong network，点它切换/添加 POTOS Testnet
+     （RPC: https://rpc-testnet.potos.hk，链 ID 与浏览器会自动带出；
+       区块浏览器: https://scan-testnet.potos.hk）
+
+三、你的任务：仲裁订单 #4
+  订单 #4（dispute demo，买家 0x741F…，10 ZYJ，已付款后买家发起争议，
+  当前状态【争议中】）。
+  在订单卡片上会看到两个仲裁按钮：
+    【仲裁：判卖家得款】resolve(buyer=false) —— 钱给卖家
+    【仲裁：判买家退款】resolve(buyer=true)  —— 钱退给买家
+  按任务书验收要求选择其一，MetaMask 确认交易即可。
+  成功后订单状态变为【已完成（卖家胜）】或【已退款（买家胜）】，
+  请截图保存，用于报告第 6/7 步验收。
+
+四、常见问题
+  - yarn install 报 "packageManager: yarn@3.2.3 ... Corepack"：
+      用管理员身份打开终端执行  corepack enable
+      然后重新  yarn install（首次会自动下载 yarn 3.2.3，稍等）。
+  - 余额不足付 gas：POTOS 水龙头领取测试币（或找组长要）。
+  - 页面订单列表为空：等几秒，事件按 10 块一批从链上拉取。

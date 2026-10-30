@@ -10,3 +10,10 @@ Thumbs.db
 # 本地备份文件
 *.bak
 *.orig
+
+# Node / Next.js（路线 B 前端）
+node_modules/
+.next/
+out/
+yarn-error.log*
+.env*.local
